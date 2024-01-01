@@ -19,14 +19,14 @@ pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 
 # creating a font 
-test_font = pygame.font.Font(None, 35)
+test_font = pygame.font.Font('Fonts/Font.ttf', 20)
 
 # creating surface for the images 
 ground_surface = pygame.image.load('Images/GroundImage.png') 
 cloud_surface = pygame.image.load('Images/Clouds.png')
 
 # creating a surface for the font 
-text_surface = test_font.render('score', 0, 'Grey30')
+text_surface = test_font.render('score', 0, 'Grey25')
 
 
 # setting up the game loop
@@ -50,7 +50,7 @@ while True:
     screen.blit(ground_surface, (0,300))
 
     # display the score ...
-    screen.blit(text_surface, (700, 10))
+    screen.blit(text_surface, (650, 20))
 
     # displaying the clouds ...  
     screen.blit(cloud_surface, (60,53))
