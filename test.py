@@ -19,7 +19,7 @@ pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 
 # creating a font 
-test_font = pygame.font.Font('Fonts/Font.ttf', 20)
+score_font = pygame.font.Font('Fonts/Font.ttf', 20)
 
 # creating surface for the images 
     # .convert_alpha() converts the images into a more workable format for the pygame
@@ -35,7 +35,7 @@ player_surface = pygame.image.load('Images/Dino/Dino_standing.png')
 player_rectangle = player_surface.get_rect(midbottom = (100, 315))
 
 # creating a surface for the font 
-text_surface = test_font.render('score', 0, 'Grey25')
+score_surface = score_font.render('score', 0, 'Grey25')
 
 # setting up the game loop
 while True:
@@ -68,7 +68,7 @@ while True:
         cactus_rectangle.left = width + 100
 
     # display the score ...
-    screen.blit(text_surface, (650, 20))
+    screen.blit(score_surface, (650, 20))
 
     # displaying the clouds ...  
     screen.blit(cloud_surface, (60,53))
@@ -77,6 +77,9 @@ while True:
     # displaying the character (dino)
     screen.blit(player_surface, player_rectangle)
 
+    # checking for the collisions
+    if player_rectangle.colliderect(cactus_rectangle):
+        print('collision')
 
     # always at the end of the game loop
     # updates the display ... 
