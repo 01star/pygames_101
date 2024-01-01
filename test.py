@@ -102,8 +102,9 @@ while True:
     
         
     # checking for the collisions
-    # if player_rectangle.colliderect(cactus_rectangle):
-    #     print('collision')
+    if player_rectangle.colliderect(cactus_rectangle):
+        pygame.quit() 
+        exit()
 
     # always at the end of the game loop
     # updates the display ... 
