@@ -27,12 +27,15 @@ test_font = pygame.font.Font('Fonts/Font.ttf', 20)
 background_surface = pygame.image.load('Images/background.png').convert_alpha()
 ground_surface = pygame.image.load('Images/GroundImage.png').convert_alpha()
 cloud_surface = pygame.image.load('Images/Clouds.png').convert_alpha()
+
 cactus_surface = pygame.image.load('Images/Cactus/Cactus2.png').convert_alpha()
+cactus_rectangle = cactus_surface.get_rect(midbottom = (600, 310))
+
+player_surface = pygame.image.load('Images/Dino/Dino_standing.png')
+player_rectangle = player_surface.get_rect(midbottom = (100, 315))
 
 # creating a surface for the font 
 text_surface = test_font.render('score', 0, 'Grey25')
-
-cactus_X_pos = 600
 
 # setting up the game loop
 while True:
@@ -59,10 +62,10 @@ while True:
     screen.blit(ground_surface, (0,300))
 
     # displaying the cactus ...
-    screen.blit(cactus_surface, (cactus_X_pos, 220))
-    cactus_X_pos -= 3
-    if (cactus_X_pos < -100):
-        cactus_X_pos = width + 100
+    screen.blit(cactus_surface, cactus_rectangle)
+    cactus_rectangle.left -= 3
+    if (cactus_rectangle.left < -100):
+        cactus_rectangle.left = width + 100
 
     # display the score ...
     screen.blit(text_surface, (650, 20))
@@ -70,6 +73,9 @@ while True:
     # displaying the clouds ...  
     screen.blit(cloud_surface, (60,53))
     screen.blit(cloud_surface, (533,141))
+
+    # displaying the character (dino)
+    screen.blit(player_surface, player_rectangle)
 
 
     # always at the end of the game loop
