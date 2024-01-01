@@ -59,7 +59,8 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if (player_rectangle.bottom == player_floor):
-                    player_gravity = -15
+                    player_gravity = -20
+                # player_gravity = -20
 
         # mouse event --
         # if event.type == pygame.MOUSEBUTTONDOWN:
@@ -91,22 +92,15 @@ while True:
     # Player 
     # displaying the character (dino)
     screen.blit(player_surface, player_rectangle)
+    player_gravity += 1                         # increase the gravity non-lienarly
+    player_rectangle.bottom += player_gravity   # make player fall with that gravity
   
-    if (player_rectangle.bottom > player_floor):
+    if (player_rectangle.bottom >= player_floor):
         # if the player is going below the surface
         player_gravity = 0                      # set gravity back to zero
         player_rectangle.bottom = player_floor  # set the player at the floor
-    elif (player_rectangle.bottom <= player_floor):
-         # else if the player is in the sky
-         player_gravity += 0.5                  # increase the gravity non-lienarly
-         player_rectangle.bottom += player_gravity  # make player fall with that gravity
-
-
-    # key_event detection ..
-    # keys = pygame.key.get_pressed()
-    # if keys[pygame.K_SPACE]:
-    #     print ('jump')
-
+    
+        
     # checking for the collisions
     # if player_rectangle.colliderect(cactus_rectangle):
     #     print('collision')
