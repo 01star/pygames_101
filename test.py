@@ -17,6 +17,9 @@ pygame.display.set_caption('Runner')
 # creating a clock, for the framerates and other niche things
 clock = pygame.time.Clock()
 
+test_surface = pygame.Surface((100, 200))
+test_surface.fill('Red')
+
 #setting up the game loop
 while True:
     # checks for any and all events occuring in the loop ...
@@ -32,8 +35,9 @@ while True:
                 # exit is a memeber of a sys lib in python
                 # allows to shut down the code itself 
 
-    # draw all the elements up here
-    #update everything
+    # blit is used to display a screen on top of other screen.
+    screen.blit(test_surface, (350,100))
+
     pygame.display.update()
     
     # adding the celling to the fps of the game at 60 fps
