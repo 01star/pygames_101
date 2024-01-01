@@ -1,4 +1,5 @@
 import pygame
+from sys import exit
 
 # this is bascially the indicating the start of the car 
 # imagine this as starting the car using the key, the engine fires up
@@ -10,6 +11,9 @@ width = 800
 height = 400
 screen = pygame.display.set_mode((width, height))
 
+# adding a title for the game, screen ...
+pygame.display.set_caption('Runner')
+
 #setting up the game loop
 while True:
     # checks for any and all events occuring in the loop ...
@@ -18,7 +22,12 @@ while True:
         # now if the event is to quit the game, 
         # then quit the game 
         if event.type == pygame.QUIT:
-            pygame.quit()
+            pygame.quit()       # this statement turns the engine off
+                                # but we are still calling for the display.update
+                                # this is an issue
+            exit()              # So, we need exit here
+                # exit is a memeber of a sys lib in python
+                # allows to shut down the code itself 
 
     # draw all the elements up here
     #update everything
