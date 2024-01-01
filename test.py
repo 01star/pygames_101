@@ -32,7 +32,10 @@ cactus_surface = pygame.image.load('Images/Cactus/Cactus2.png').convert_alpha()
 cactus_rectangle = cactus_surface.get_rect(midbottom = (600, 310))
 
 player_surface = pygame.image.load('Images/Dino/Dino_standing.png')
-player_rectangle = player_surface.get_rect(midbottom = (100, 315))
+player_gravity = 0
+player_floor = 315
+player_rectangle = player_surface.get_rect(midbottom = (100, player_floor))
+
 
 # creating a surface for the font 
 score_surface = score_font.render('score', 0, 'Grey25')
@@ -51,6 +54,17 @@ while True:
             exit()              # So, we need exit here
                 # exit is a memeber of a sys lib in python
                 # allows to shut down the code itself 
+            
+        # key events --
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                if (player_rectangle.bottom == player_floor):
+                    player_gravity = -15
+
+        # mouse event --
+        # if event.type == pygame.MOUSEBUTTONDOWN:
+        #     if player_rectangle.collidepoint(event.pos):
+        #         print ('mosue collision')
 
     # blit is used to display a screen on top of other screen.
     # we use it to add images on the display screen 
@@ -74,12 +88,28 @@ while True:
     screen.blit(cloud_surface, (60,53))
     screen.blit(cloud_surface, (533,141))
 
+    # Player 
     # displaying the character (dino)
     screen.blit(player_surface, player_rectangle)
+  
+    if (player_rectangle.bottom > player_floor):
+        # if the player is going below the surface
+        player_gravity = 0                      # set gravity back to zero
+        player_rectangle.bottom = player_floor  # set the player at the floor
+    elif (player_rectangle.bottom <= player_floor):
+         # else if the player is in the sky
+         player_gravity += 0.5                  # increase the gravity non-lienarly
+         player_rectangle.bottom += player_gravity  # make player fall with that gravity
+
+
+    # key_event detection ..
+    # keys = pygame.key.get_pressed()
+    # if keys[pygame.K_SPACE]:
+    #     print ('jump')
 
     # checking for the collisions
-    if player_rectangle.colliderect(cactus_rectangle):
-        print('collision')
+    # if player_rectangle.colliderect(cactus_rectangle):
+    #     print('collision')
 
     # always at the end of the game loop
     # updates the display ... 
