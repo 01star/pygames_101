@@ -14,6 +14,9 @@ screen = pygame.display.set_mode((width, height))
 # adding a title for the game, screen ...
 pygame.display.set_caption('Runner')
 
+# creating a clock, for the framerates and other niche things
+clock = pygame.time.Clock()
+
 #setting up the game loop
 while True:
     # checks for any and all events occuring in the loop ...
@@ -32,3 +35,8 @@ while True:
     # draw all the elements up here
     #update everything
     pygame.display.update()
+    
+    # adding the celling to the fps of the game at 60 fps
+    # this is telling the game to wait atmost ~17 ms before updating
+    # the loop cannot be updated any quicker
+    clock.tick(60)
