@@ -22,6 +22,8 @@ clock = pygame.time.Clock()
 test_font = pygame.font.Font('Fonts/Font.ttf', 20)
 
 # creating surface for the images 
+    # .convert_alpha() converts the images into a more workable format for the pygame
+    # in theory making our game more optimized ... 
 background_surface = pygame.image.load('Images/background.png').convert_alpha()
 ground_surface = pygame.image.load('Images/GroundImage.png').convert_alpha()
 cloud_surface = pygame.image.load('Images/Clouds.png').convert_alpha()
