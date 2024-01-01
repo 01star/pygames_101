@@ -22,12 +22,15 @@ clock = pygame.time.Clock()
 test_font = pygame.font.Font('Fonts/Font.ttf', 20)
 
 # creating surface for the images 
-ground_surface = pygame.image.load('Images/GroundImage.png') 
-cloud_surface = pygame.image.load('Images/Clouds.png')
+background_surface = pygame.image.load('Images/background.png').convert_alpha()
+ground_surface = pygame.image.load('Images/GroundImage.png').convert_alpha()
+cloud_surface = pygame.image.load('Images/Clouds.png').convert_alpha()
+cactus_surface = pygame.image.load('Images/Cactus/Cactus2.png').convert_alpha()
 
 # creating a surface for the font 
 text_surface = test_font.render('score', 0, 'Grey25')
 
+cactus_X_pos = 600
 
 # setting up the game loop
 while True:
@@ -46,8 +49,18 @@ while True:
 
     # blit is used to display a screen on top of other screen.
     # we use it to add images on the display screen 
-    # displaying the ground ...
+
+    # creating the background ..
+    screen.blit(background_surface, (0,0))
+
+     # displaying the ground ...
     screen.blit(ground_surface, (0,300))
+
+    # displaying the cactus ...
+    screen.blit(cactus_surface, (cactus_X_pos, 220))
+    cactus_X_pos -= 3
+    if (cactus_X_pos < -100):
+        cactus_X_pos = width + 100
 
     # display the score ...
     screen.blit(text_surface, (650, 20))
@@ -55,6 +68,7 @@ while True:
     # displaying the clouds ...  
     screen.blit(cloud_surface, (60,53))
     screen.blit(cloud_surface, (533,141))
+
 
     # always at the end of the game loop
     # updates the display ... 
