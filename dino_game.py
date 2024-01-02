@@ -7,8 +7,8 @@ from sys import exit
 pygame.init()
 
 # setting up the display screen for it to display our game 
-width = 800
-height = 400
+width = 1200
+height = 500
 screen = pygame.display.set_mode((width, height))
 screen.fill('White')
 
@@ -32,11 +32,12 @@ ground_surface = pygame.image.load('Images/GroundImage.png').convert_alpha()
 cloud_surface = pygame.image.load('Images/Clouds.png').convert_alpha()
 
 cactus_surface = pygame.image.load('Images/Cactus/Cactus1.png').convert_alpha()
-cactus_rectangle = cactus_surface.get_rect(midbottom = (600, 310))
+cactus_rectangle = cactus_surface.get_rect(midbottom = (1000, 410))
 
 player_surface = pygame.image.load('Images/Dino/Dino_standing.png')
+# dino_surface = pygame.transform.scale(player_surface, ())
 player_gravity = 0
-player_floor = 315
+player_floor = 415
 player_rectangle = player_surface.get_rect(midbottom = (100, player_floor))
 
 
@@ -67,7 +68,7 @@ while True:
 
         elif event.type == pygame.KEYDOWN and game_active == False:
             game_active = True
-            cactus_rectangle = cactus_surface.get_rect(midbottom = (600, 310))
+            cactus_rectangle = cactus_surface.get_rect(midbottom = (1100, 410))
             player_rectangle = player_surface.get_rect(midbottom = (100, player_floor))
 
         # mouse event --
@@ -83,7 +84,7 @@ while True:
         screen.blit(background_surface, (0,0))
 
         # displaying the ground ...
-        screen.blit(ground_surface, (0,300))
+        screen.blit(ground_surface, (0,400))
 
         # displaying the cactus ...
         screen.blit(cactus_surface, cactus_rectangle)
@@ -92,7 +93,7 @@ while True:
             cactus_rectangle.left = width + 100
 
         # display the score ...
-        screen.blit(score_surface, (650, 20))
+        screen.blit(score_surface, (1100, 20))
 
         # displaying the clouds ...  
         screen.blit(cloud_surface, (60,53))
